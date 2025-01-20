@@ -7,12 +7,10 @@ const DEBUG_MODE = false;
 const BLANK_STR = '';
 const BUTTON_KEY = 'btnGenerate';
 const CERT_FILE_KEY = "certFile";
-const DOWNLOAD_LINK_KEY = "downloadLink";
 const OUTPUT_KEY = "output";
 const VARIABLE_NAME_KEY = "variableName";
 
 let certContent;
-let headerContent;
 
 (function () {
   console.log("Initializing JavaScript code");
@@ -24,17 +22,13 @@ let headerContent;
   document.getElementById(CERT_FILE_KEY).addEventListener('change', setButtonState, false);
   document.getElementById(BUTTON_KEY).addEventListener('click', generateFile, false);
 
-  // hide the download `div`
-  document.getElementById('divDownloadLink').style.display = 'none';
-  // document.getElementById('divDownloadLink').style.display='block';
-
   // Populate the form
   let arduinoVariable = localStorage.getItem(VARIABLE_NAME_KEY);
   document.getElementById(VARIABLE_NAME_KEY).value = arduinoVariable ? arduinoVariable : 'cert';
   // initialize the cert content value. Since the field is read-only, I can't pull the value
   // from the `textarea` using JavaScript. So I added this variable to maintain state for me
   certContent = BLANK_STR;
-  headerContent = BLANK_STR;
+  // disable the Generate button
   setButtonState();
 })();
 
@@ -81,10 +75,8 @@ function fileSelected(event) {
 }
 
 async function generateFile(event) {
-
   const slash = String.fromCharCode(92);
   const cr = String.fromCharCode(13);
-
 
   event.preventDefault();
   console.log(`Generating Arduino header file`);
@@ -118,7 +110,7 @@ async function generateFile(event) {
     // remove any line breaks from the line
     line = line.replace(/(\r\n|\n|\r)/gm, "")
     // not rebuild the line like we want it to be
-    await writableFileStream.write('"' + line + '" ' + slash + cr);
+    await writableFileStream.write('"' + line + slash + 'n" ' + slash + cr);
   }
   // Close the writable stream - its content is now persisted to the file on disk
   await writableFileStream.close();

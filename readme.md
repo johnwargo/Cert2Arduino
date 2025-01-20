@@ -6,8 +6,14 @@ Public site: https://cert2arduino.netlify.app/
 
 ## Tasks
 
-- [ ] Get Scott to clean this up
+- [ ] Take screenshot
+- [ ] Update readme
 - [ ] Add Google Analytics
+- [ ] Write wiki page
+- [ ] Make repo public
+- [ ]
+- [ ]
+- [ ]
 
 ## About
 
