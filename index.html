@@ -39,11 +39,13 @@
     <p>This utility converts a downloaded public certificate file (a .pem or .crt file) into a header file you can use
       with an <a href="https://www.espressif.com/" target="_blank">Espressif</a> device (ESP-32, for example) in the
       Arduino IDE with the Arduino WiFiClientSecure library to make secure connections (HTTPS) to remote servers.
-      Without access to the certificate, an Arduino sketch cannot connect to the remote server. </p>
+      Without access to the certificate, an Arduino sketch cannot connect to the remote server over a secure connection.
+    </p>
     <p>Enter a name for the certificate variable exposed by the generated header file (or accept the default "cert")
       then select the certificate file. When you click the <strong>Generate Header File</strong> button, the app prompts
       for the target file name, then writes the generated header file to the target file. Refer to the <a
-        href="https://github.com/johnwargo/Cert2Arduino/wiki">documentation</a> for additional information.</p>
+        href="https://github.com/johnwargo/Cert2Arduino/wiki">documentation</a> for additional information.
+    </p>
     <form>
       <label for="variableName">Arduino Variable Name:</label>
       <input id="variableName" type="text"/>
@@ -54,7 +56,8 @@
       <button id="btnGenerate">Generate Header File</button>
     </form>
     <p>Add free because I prefer it that way. If this page helps you, consider <a
-      href="https://www.buymeacoffee.com/johnwargo" target="_blank">buying me a coffee</a>.</p>
+      href="https://www.buymeacoffee.com/johnwargo" target="_blank">buying me a coffee</a>.
+    </p>
   </section>
 </main>
 <footer>
