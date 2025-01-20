@@ -28,6 +28,7 @@
   <nav>
     <h1>Cert2Arduino</h1>
     <ul>
+      <li><a href="https://johnwargo.com" target="_blank">Blog</a></li>
       <li><a href="https://github.com/johnwargo/Cert2Arduino/wiki" target="_blank">Docs</a></li>
       <li><a href="https://github.com/johnwargo/Cert2Arduino" target="_blank">Code</a></li>
     </ul>
@@ -35,26 +36,25 @@
 </header>
 <main>
   <section>
-    <p>Chuck tenderloin meatloaf chicken, salami jerky ribeye buffalo chislic landjaeger tri-tip venison. Frankfurter
-      shankle brisket meatloaf tongue, swine pork chop. Short ribs andouille shoulder leberkas boudin. Kielbasa
-      turducken drumstick, flank spare ribs pastrami venison pork loin capicola sirloin turkey meatloaf pancetta.</p>
-    <p>Meatball brisket boudin, ham hock hamburger ribeye chicken rump corned beef drumstick venison pig pastrami
-      sausage. Turducken corned beef drumstick, strip steak burgdoggen t-bone pork chop swine jowl kevin. Pork chop ham
-      chuck kielbasa drumstick tri-tip. Turkey ground round kevin capicola landjaeger brisket pig swine alcatra. Bacon
-      corned beef chicken bresaola.</p>
+    <p>This utility converts a downloaded public certificate file (a .pem or .crt file) into a header file you can use
+      with an <a href="https://www.espressif.com/" target="_blank">Espressif</a> device (ESP-32, for example) in the
+      Arduino IDE with the Arduino WiFiClientSecure library to make secure connections (HTTPS) to remote servers.
+      Without access to the certificate, an Arduino sketch cannot connect to the remote server. </p>
+    <p>Enter a name for the certificate variable exposed by the generated header file (or accept the default "cert")
+      then select the certificate file. When you click the <strong>Generate Header File</strong> button, the app prompts
+      for the target file name, then writes the generated header file to the target file. Refer to the <a
+        href="https://github.com/johnwargo/Cert2Arduino/wiki">documentation</a> for additional information.</p>
     <form>
       <label for="variableName">Arduino Variable Name:</label>
       <input id="variableName" type="text"/>
       <label for="certFile">Certificate File:</label>
       <input type="file" id="certFile" name="certFile" accept=".crt, .pem"/>
-      <label for="output">Certificate Content:</label>
+      <label for="output">Source Certificate:</label>
       <textarea id="output" rows="20" cols="80" readonly></textarea>
       <button id="btnGenerate">Generate Header File</button>
     </form>
-    <p>Meatball brisket boudin, ham hock hamburger ribeye chicken rump corned beef drumstick venison pig pastrami
-      sausage. Turducken corned beef drumstick, strip steak burgdoggen t-bone pork chop swine jowl kevin. Pork chop ham
-      chuck kielbasa drumstick tri-tip. Turkey ground round kevin capicola landjaeger brisket pig swine alcatra. Bacon
-      corned beef chicken bresaola.</p>
+    <p>Add free because I prefer it that way. If this page helps you, consider <a
+      href="https://www.buymeacoffee.com/johnwargo" target="_blank">buying me a coffee</a>.</p>
   </section>
 </main>
 <footer>
