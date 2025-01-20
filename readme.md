@@ -24,3 +24,5 @@ Hosting by Netlify
 ## Using
 
 
+![Application Main Page](images/figure-01.png)
+
