@@ -14,3 +14,7 @@ body footer {
 footer hr {
   margin-bottom: 0;
 }
+
+#variableName {
+  font-family: monospace;
+}
