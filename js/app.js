@@ -121,8 +121,6 @@ async function generateFile(event) {
     // always end with a carriage return
     await writableFileStream.write(cr);
   }
-
   // Close the writable stream - its content is now persisted to the file on disk
   await writableFileStream.close();
-
 }
