@@ -44,11 +44,17 @@
       corned beef chicken bresaola.</p>
     <form>
       <label for="variableName">Arduino Variable Name:</label>
-      <input id="variableName" type="text">
+      <input id="variableName" type="text"/>
       <label for="certFile">Certificate File:</label>
-      <input type="file" id="certFile" name="certFile" accept="image/png, image/jpeg"/>
-      <button id="submitButton" type="submit">Generate File</button>
+      <input type="file" id="certFile" name="certFile" accept=".crt, .pem"/>
+      <label for="output">Certificate Content:</label>
+      <textarea id="output" rows="20" cols="80" readonly></textarea>
+      <button id="btnGenerate">Generate File</button>
     </form>
+    <p>Meatball brisket boudin, ham hock hamburger ribeye chicken rump corned beef drumstick venison pig pastrami
+      sausage. Turducken corned beef drumstick, strip steak burgdoggen t-bone pork chop swine jowl kevin. Pork chop ham
+      chuck kielbasa drumstick tri-tip. Turkey ground round kevin capicola landjaeger brisket pig swine alcatra. Bacon
+      corned beef chicken bresaola.</p>
   </section>
 </main>
 <footer>
@@ -59,8 +65,7 @@
       href="https://html5boilerplate.com/" target="_blank">HTML Boilerplate</a></small>
   </p>
 </footer>
-<script src="js/app.js"></script>
-
+<script src="/js/app.js"></script>
 </body>
 
 </html>
