@@ -106,12 +106,22 @@ async function generateFile(event) {
   // write the first line of the file
   await writableFileStream.write(`const char* ${variableName}= ` + slash + cr);
   // now loop through the array and write each line to the file
-  for (var line of outputArray) {
+  let fileEnd = outputArray.length - 1;
+  for (let i = 0; i < outputArray.length; i++) {
+    // get the current line
+    let line = outputArray[i];
     // remove any line breaks from the line
     line = line.replace(/(\r\n|\n|\r)/gm, "")
-    // not rebuild the line like we want it to be
-    await writableFileStream.write('"' + line + slash + 'n" ' + slash + cr);
+    // now rebuild the line like we want it to be
+    await writableFileStream.write('"' + line + slash + 'n" ');
+    if (i < fileEnd) {
+      // add the slash to every line except the last one
+      await writableFileStream.write(slash);
+    }
+    // always end with a carriage return
+    await writableFileStream.write(cr);
   }
+
   // Close the writable stream - its content is now persisted to the file on disk
   await writableFileStream.close();
 
