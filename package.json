@@ -1,13 +1,10 @@
 {
   "name": "Cert2Arduino",
   "version": "0.0.1",
-  "description": "",
-  "private": true,
-  "keywords": [
-    ""
-  ],
-  "license": "",
-  "author": "",
+  "description": "Convert a certificate file into an Arduino Header file",
+  "keywords": [""],
+  "license": "MIT",
+  "author": "John M. Wargo",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --open --config webpack.config.dev.js",
