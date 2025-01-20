@@ -28,16 +28,20 @@ function fileSelectionCancelled(event) {
 
 function fileSelected(event) {
   console.log(`File selected`);
-  console.dir(event.target.files);
 
+  const outputField = document.getElementById('output');
   const file = event.target.files[0];
-  const reader = new FileReader();
+  if (file) {
+    console.dir(file);
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      outputField.textContent = event.target.result;
+    };
+    reader.readAsText(file); // Read file as plain text
+  } else {
+    outputField.textContent = '';
+  }
 
-  reader.onload = function(event) {
-    document.getElementById('output').textContent = event.target.result;
-  };
-
-  reader.readAsText(file); // Read file as plain text
 }
 
 function generateFile(event) {
