@@ -24,13 +24,13 @@ let headerContent;
   document.getElementById(CERT_FILE_KEY).addEventListener('change', setButtonState, false);
   document.getElementById(BUTTON_KEY).addEventListener('click', generateFile, false);
 
-  // hide the results `div`
-  // document.getElementById(DOWNLOAD_LINK_KEY).style.display='none';
-  // document.getElementById(DOWNLOAD_LINK_KEY).style.display='block';
+  // hide the download `div`
+  document.getElementById('divDownloadLink').style.display = 'none';
+  // document.getElementById('divDownloadLink').style.display='block';
 
   // Populate the form
   let arduinoVariable = localStorage.getItem(VARIABLE_NAME_KEY);
-  document.getElementById(VARIABLE_NAME_KEY).value = arduinoVariable ? arduinoVariable : 'certfile';
+  document.getElementById(VARIABLE_NAME_KEY).value = arduinoVariable ? arduinoVariable : 'cert';
   // initialize the cert content value. Since the field is read-only, I can't pull the value
   // from the `textarea` using JavaScript. So I added this variable to maintain state for me
   certContent = BLANK_STR;
@@ -80,13 +80,47 @@ function fileSelected(event) {
   }
 }
 
-function generateFile(event) {
+async function generateFile(event) {
+
+  const slash = String.fromCharCode(92);
+  const cr = String.fromCharCode(13);
+
+
   event.preventDefault();
   console.log(`Generating Arduino header file`);
-  const fileList = document.getElementById(CERT_FILE_KEY).files;
-  const outputField = document.getElementById(OUTPUT_KEY);
-  // console.dir(fileList);
-  // console.log(outputField.value);
+  // pull the variable name off the form to use as the root of the file name
+  const variableName = document.getElementById(VARIABLE_NAME_KEY).value;
+  // convert the certificate data into an array
+  let outputArray = certContent.split("\n");
+  // remove any empty lines from the array
+  outputArray = outputArray.filter((line) => line.length > 1);
+  if (DEBUG_MODE) console.dir(outputArray);
 
+  // controls the SaveFile dialog that appears
+  const pickerOpts = {
+    excludeAcceptAllOption: true,
+    multiple: false,
+    suggestedName: `${variableName}.h`,
+    types: [
+      {
+        description: "Arduino Header Files",
+        accept: {"text/plain": [".h"]},
+      },
+    ]
+  };
+  // get the output file path
+  const fileHandle = await window.showSaveFilePicker(pickerOpts);
+  const writableFileStream = await fileHandle.createWritable();
+  // write the first line of the file
+  await writableFileStream.write(`const char* ${variableName}= ` + slash + cr);
+  // now loop through the array and write each line to the file
+  for (var line of outputArray) {
+    // remove any line breaks from the line
+    line = line.replace(/(\r\n|\n|\r)/gm, "")
+    // not rebuild the line like we want it to be
+    await writableFileStream.write('"' + line + '" ' + slash + cr);
+  }
+  // Close the writable stream - its content is now persisted to the file on disk
+  await writableFileStream.close();
 
 }
