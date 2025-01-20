@@ -55,6 +55,4 @@ function generateFile(event) {
     console.log('No file found.');
     alert('No file found.');
   }
-
-
 }
