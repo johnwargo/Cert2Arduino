@@ -11,6 +11,9 @@ Public site: https://cert2arduino.netlify.app/
 
 ## About
 
+Coded the app in WebStorm using the HTML Boilerplate template
+Styling by MVP.css
+Hosting by Netlify
 
 ## Using
 
