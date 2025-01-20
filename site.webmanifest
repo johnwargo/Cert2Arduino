@@ -1,0 +1,14 @@
+{
+  "name": "Certificate to Arduino",
+  "short_name": "Cert2Arduino",
+  "description": "Convert a certificate file into an Arduino Header file",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [{
+    "src": "/icon.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }],
+  "background_color": "#fafafa",
+  "theme_color": "#fafafa"
+}
