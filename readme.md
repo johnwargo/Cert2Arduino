@@ -7,7 +7,7 @@ Public site: https://cert2arduino.netlify.app/
 ## Tasks
 
 - [ ] Update readme
-- [ ] Add Google Analytics
+- [x] Add Google Analytics
 - [ ] Write wiki page
 - [ ] App icon
 - [ ]
