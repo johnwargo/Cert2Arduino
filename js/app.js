@@ -7,10 +7,12 @@ const DEBUG_MODE = false;
 const BLANK_STR = '';
 const BUTTON_KEY = 'btnGenerate';
 const CERT_FILE_KEY = "certFile";
+const DOWNLOAD_LINK_KEY = "downloadLink";
 const OUTPUT_KEY = "output";
 const VARIABLE_NAME_KEY = "variableName";
 
 let certContent;
+let headerContent;
 
 (function () {
   console.log("Initializing JavaScript code");
@@ -22,11 +24,17 @@ let certContent;
   document.getElementById(CERT_FILE_KEY).addEventListener('change', setButtonState, false);
   document.getElementById(BUTTON_KEY).addEventListener('click', generateFile, false);
 
+  // hide the results `div`
+  // document.getElementById(DOWNLOAD_LINK_KEY).style.display='none';
+  // document.getElementById(DOWNLOAD_LINK_KEY).style.display='block';
+
   // Populate the form
   let arduinoVariable = localStorage.getItem(VARIABLE_NAME_KEY);
   document.getElementById(VARIABLE_NAME_KEY).value = arduinoVariable ? arduinoVariable : 'certfile';
-
+  // initialize the cert content value. Since the field is read-only, I can't pull the value
+  // from the `textarea` using JavaScript. So I added this variable to maintain state for me
   certContent = BLANK_STR;
+  headerContent = BLANK_STR;
   setButtonState();
 })();
 
@@ -42,16 +50,16 @@ function setButtonState() {
 }
 
 function saveVariableName(event) {
-  console.log(`Saving variable name: "${event.target.value}"`);
+  if (DEBUG_MODE) console.log(`Saving variable name: "${event.target.value}"`);
   localStorage.setItem(VARIABLE_NAME_KEY, event.target.value);
 }
 
 function fileSelectionCancelled(event) {
-  console.log(`File selection cancelled`);
+  if (DEBUG_MODE) console.log(`File selection cancelled`);
 }
 
 function fileSelected(event) {
-  console.log(`File selection change`);
+  if (DEBUG_MODE) console.log(`File selection change`);
   const outputField = document.getElementById(OUTPUT_KEY);
   const file = event.target.files[0];
   if (file) {
@@ -74,16 +82,11 @@ function fileSelected(event) {
 
 function generateFile(event) {
   event.preventDefault();
-  console.log('Generating file');
-
+  console.log(`Generating Arduino header file`);
   const fileList = document.getElementById(CERT_FILE_KEY).files;
   const outputField = document.getElementById(OUTPUT_KEY);
+  // console.dir(fileList);
+  // console.log(outputField.value);
 
-  if (fileList.length > 0) {
-    console.dir(fileList);
-    console.log(outputField.value);
-  } else {
-    console.log('No file found.');
 
-  }
 }

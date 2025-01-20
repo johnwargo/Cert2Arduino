@@ -2,11 +2,15 @@
   "name": "Cert2Arduino",
   "version": "0.0.1",
   "description": "Convert a certificate file into an Arduino Header file",
-  "keywords": [
-    ""
-  ],
-  "license": "MIT",
   "author": "John M. Wargo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnwargo/Cert2Arduino"
+  },
+  "bugs": {
+    "url": "https://github.com/johnwargo/Cert2Arduino/issues"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --open --config webpack.config.dev.js",
@@ -19,8 +23,5 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4",
     "webpack-merge": "^5.10.0"
-  },
-  "dependencies": {
-    "sweetalert2": "^11.15.10"
   }
 }
