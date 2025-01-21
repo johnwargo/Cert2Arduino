@@ -26,7 +26,11 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YXK4DFRYQF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
     gtag('js', new Date());
 
     gtag('config', 'G-YXK4DFRYQF');
@@ -54,7 +58,8 @@
     <p>Enter a name for the certificate variable exposed by the generated header file (or accept the default "cert")
       then select the certificate file. When you click the <strong>Generate Header File</strong> button, the app prompts
       for the target file name, then writes the generated header file to the target file. Refer to the <a
-        href="https://github.com/johnwargo/Cert2Arduino/wiki">documentation</a> for additional information.
+        href="https://github.com/johnwargo/Cert2Arduino/wiki" target="_blank">documentation</a> for additional
+      information.
     </p>
     <form>
       <label for="variableName">Arduino Variable Name:</label>
@@ -65,7 +70,7 @@
       <textarea id="output" rows="15" cols="80" readonly></textarea>
       <button id="btnGenerate">Generate Header File</button>
     </form>
-    <p>Add free because I prefer it that way. If this page helps you, consider <a
+    <p>Add free because I prefer it that way. If this app helps you, consider <a
       href="https://www.buymeacoffee.com/johnwargo" target="_blank">buying me a coffee</a>.
     </p>
   </section>
@@ -73,9 +78,10 @@
 <footer>
   <hr>
   <p>
-    <small>Copyright <a href="https://johnwargo.com" target="_blank">John M. Wargo</a> | Styling by <a
-      href="https://andybrewer.github.io/mvp/" target="_blank">MVP.css</a> | Project by <a
-      href="https://html5boilerplate.com/" target="_blank">HTML Boilerplate</a></small>
+    <small>Copyright <a href="https://johnwargo.com" target="_blank">John M. Wargo</a> |
+      Styling by <a href="https://andybrewer.github.io/mvp/" target="_blank">MVP.css</a> |
+      Project by <a href="https://html5boilerplate.com/" target="_blank">HTML Boilerplate</a> |
+      Hosted by <a href="https://www.netlify.com/" target="_blank">Netlify</a></small>
   </p>
 </footer>
 <script src="/js/app.js"></script>
