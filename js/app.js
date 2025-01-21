@@ -113,10 +113,12 @@ async function generateFile(event) {
     // remove any line breaks from the line
     line = line.replace(/(\r\n|\n|\r)/gm, "")
     // now rebuild the line like we want it to be
-    await writableFileStream.write('"' + line + slash + 'n" ');
+    await writableFileStream.write('"' + line + slash + 'n"');
     if (i < fileEnd) {
       // add the slash to every line except the last one
-      await writableFileStream.write(slash);
+      await writableFileStream.write(' ' + slash);
+    } else {
+      await writableFileStream.write(";");
     }
     // always end with a carriage return
     await writableFileStream.write(cr);
