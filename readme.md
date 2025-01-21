@@ -9,12 +9,12 @@ A simple web application that allows visitors to convert a downloaded certificat
 - [x] Update readme
 - [ ] Write wiki page
 - [ ] App icon
-- [ ] Validate that the input variable name is valid in C. 
+- [ ] Validate that the input variable name is valid in C.
 - [ ]
 
 ## Background
 
-While working on an ESP32 project, I realized that I needed a way to make a secure (SSL) connection to a web server to retrieve some data. In the example code included with the Arduino IDE as well as some online tutorials, I realized that I need to download the certificate for the server, then convert it into a format that an Arduino sketch could use to make secure connections to the server. 
+While working on an ESP32 project, I realized that I needed a way to make a secure (SSL) connection to a web server to retrieve some data. In the example code included with the Arduino IDE as well as some online tutorials, I realized that I need to download the certificate for the server, then convert it into a format that an Arduino sketch could use to make secure connections to the server.
 
 Basically, the download certificate is a text file with a specific format:
 
@@ -32,7 +32,7 @@ hSaI
 -----END CERTIFICATE-----
 ```
 
-The file contains a header (`-----BEGIN CERTIFICATE-----`) and footer (`-----END CERTIFICATE-----`) that delimits the certificate code. Everything in between is the raw code of the public certificate. 
+The file contains a header (`-----BEGIN CERTIFICATE-----`) and footer (`-----END CERTIFICATE-----`) that delimits the certificate code. Everything in between is the raw code of the public certificate.
 
 **Note:** That particular file is 184 lines long, so I used the three periods vertically  in the middle to indicate that part of the file was cut out of the example.
 
@@ -57,7 +57,7 @@ const char* cert= \
 "mcNL3qT7c96/YJZvxPiXDCfAvaKv3zYq+vH1O4hpJ1XYm7SFeHFQ5AyisnKP4z7U\n" \
 "uDcTXhOPTOtzsVMEaRbCaYwq+y/4AxLasMtUj4h20s9E2BwMgSy8jjbvlTZKli4D\n" \
 "hSaI\n" \
-"-----END CERTIFICATE-----\n"
+"-----END CERTIFICATE-----\n";
 ```
 
 Making those changes to the certificate file isn't impossible, but at 184 lines for this particular example, it's pretty tedious work If you have to do this frequently for certificates for different sites. Since I don't like doing that type of tedious work, I decided to build a utility that handles the process for me (and you).
@@ -87,7 +87,7 @@ The app UI will update to show the contents of the selected certificate file.
 
 ![Application Main Page again](images/figure-03.png)
 
-Click the <strong>Generate Header File</strong> button and the app will prompt you to select the target folder and file name for the generated header file to the target file. 
+Click the <strong>Generate Header File</strong> button and the app will prompt you to select the target folder and file name for the generated header file to the target file.
 
 To use the header file in your Arduino sketch, add the following line to the top of the sketch's main file:
 
@@ -106,7 +106,7 @@ client.setCACert(cert);
 
 I built this application using the [JetBrains WebStorm](https://www.jetbrains.com/webstorm/) IDE and the [HTML5 Boilerplate](https://html5boilerplate.com/) template. I licensed the IDE for many years, but never used it for much. I wanted to play with HTM5 Boilerplate, so this app gave me a chance to do so.
 
-I used [MVP.css](https://github.com/andybrewer/mvp) to style the application; it provides a very simple and clean UX for the app. The stylesheet uses huge padding at the top and the bottom of the page, so I had to tune that down a little to give the app the look I wanted. 
+I used [MVP.css](https://github.com/andybrewer/mvp) to style the application; it provides a very simple and clean UX for the app. The stylesheet uses huge padding at the top and the bottom of the page, so I had to tune that down a little to give the app the look I wanted.
 
 Since this is an open source project, I'm able to host the app for free on [Netlify](https://www.netlify.com/); thanks Netlify!
 
