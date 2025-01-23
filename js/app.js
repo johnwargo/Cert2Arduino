@@ -4,6 +4,7 @@
 
 const DEBUG_MODE = false;
 
+const BACKSLASH_KEY = 'chkBackslash';
 const BLANK_STR = '';
 const BUTTON_KEY = 'btnGenerate';
 const CERT_FILE_KEY = "certFile";
@@ -15,8 +16,9 @@ let certContent;
 (function () {
   console.log("Initializing JavaScript code");
   // Add event listeners
-  document.getElementById(VARIABLE_NAME_KEY).addEventListener('change', saveVariableName, false);
+  document.getElementById(VARIABLE_NAME_KEY).addEventListener('change', updateStorage, false);
   document.getElementById(VARIABLE_NAME_KEY).addEventListener('input', setButtonState, false);
+  document.getElementById(BACKSLASH_KEY).addEventListener('change', updateStorage, false);
   document.getElementById(CERT_FILE_KEY).addEventListener('cancel', fileSelectionCancelled, false);
   document.getElementById(CERT_FILE_KEY).addEventListener('change', fileSelected, false);
   document.getElementById(CERT_FILE_KEY).addEventListener('change', setButtonState, false);
@@ -25,12 +27,27 @@ let certContent;
   // Populate the form
   let arduinoVariable = localStorage.getItem(VARIABLE_NAME_KEY);
   document.getElementById(VARIABLE_NAME_KEY).value = arduinoVariable ? arduinoVariable : 'cert';
+  document.getElementById(BACKSLASH_KEY).checked = localStorage.getItem(BACKSLASH_KEY) === 'true';
+
   // initialize the cert content value. Since the field is read-only, I can't pull the value
   // from the `textarea` using JavaScript. So I added this variable to maintain state for me
   certContent = BLANK_STR;
+
   // disable the Generate button
   setButtonState();
 })();
+
+function updateStorage(event) {
+  if (DEBUG_MODE) {
+    console.log("Setting content to localstorage");
+    console.log(`Saving variable name: "${event.target.value}"`);
+  }
+  // save the code variable name
+  localStorage.setItem(VARIABLE_NAME_KEY, document.getElementById(VARIABLE_NAME_KEY).value);
+  // save the button state
+  let chkBackslash = document.getElementById(BACKSLASH_KEY).checked;
+  localStorage.setItem(BACKSLASH_KEY, chkBackslash);
+}
 
 function setButtonState() {
   const generateButton = document.getElementById(BUTTON_KEY);
@@ -41,11 +58,6 @@ function setButtonState() {
     console.log(`output: "${certContent}"`);
   }
   generateButton.disabled = (variableName.length < 1 || certContent.length < 1);
-}
-
-function saveVariableName(event) {
-  if (DEBUG_MODE) console.log(`Saving variable name: "${event.target.value}"`);
-  localStorage.setItem(VARIABLE_NAME_KEY, event.target.value);
 }
 
 function fileSelectionCancelled(event) {
@@ -80,6 +92,8 @@ async function generateFile(event) {
 
   event.preventDefault();
   console.log(`Generating Arduino header file`);
+
+  const chkBackslash = document.getElementById(BACKSLASH_KEY).checked;
   // pull the variable name off the form to use as the root of the file name
   const variableName = document.getElementById(VARIABLE_NAME_KEY).value;
   // convert the certificate data into an array
@@ -104,7 +118,11 @@ async function generateFile(event) {
   const fileHandle = await window.showSaveFilePicker(pickerOpts);
   const writableFileStream = await fileHandle.createWritable();
   // write the first line of the file
-  await writableFileStream.write(`const char* ${variableName}= ` + slash + cr);
+  if (chkBackslash) {
+    await writableFileStream.write(`const char* ${variableName}= ` + slash + cr);
+  } else {
+    await writableFileStream.write(`const char* ${variableName}= ` + cr);
+  }
   // now loop through the array and write each line to the file
   let fileEnd = outputArray.length - 1;
   for (let i = 0; i < outputArray.length; i++) {
@@ -115,8 +133,10 @@ async function generateFile(event) {
     // now rebuild the line like we want it to be
     await writableFileStream.write('"' + line + slash + 'n"');
     if (i < fileEnd) {
-      // add the slash to every line except the last one
-      await writableFileStream.write(' ' + slash);
+      if (chkBackslash) {
+        // add the slash to every line except the last one
+        await writableFileStream.write(' ' + slash);
+      }
     } else {
       await writableFileStream.write(";");
     }
