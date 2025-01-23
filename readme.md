@@ -6,8 +6,6 @@ A simple web application that allows visitors to convert a downloaded certificat
 
 ## Open Tasks
 
-- [x] Update readme
-- [ ] Write wiki page
 - [ ] App icon
 - [ ] Validate that the input variable name is valid in C.
 - [ ]
@@ -64,7 +62,6 @@ Making those changes to the certificate file isn't impossible, but at 184 lines 
 
 That's why you're here.
 
-
 ## Operation
 
 To use the utility, you must download a server's public key into a `.pem` or `.crt` file. I'm not going to show you how to do that here, just follow the instructions found online. Here's a good example: [How to Download the SSL Certificate From a Website in Windows](https://www.instructables.com/How-to-Download-the-SSL-Certificate-From-a-Website/).
@@ -78,6 +75,8 @@ Enter a name for the certificate variable exposed by the generated header file (
 > A valid C variable name can contain letters, digits, and underscores, but must always start with a letter or an underscore; it cannot start with a number, contain spaces, or use reserved keywords like "int" or "float" - examples include: "age", "my_variable", "totalSum", "x", "y".
 
 Reference: [C Variable Names (Identifiers)](https://www.w3schools.com/c/c_variables_names.php).
+
+I found that the Arduino Compiler doesn't care if the file has the continuation character (`\`) appended at the end of each line (except for the last one), so I added a checkbox you can use to enable or disable that in the output.
 
 Next, click the **Chose File** button and navigate to the folder location where you stored the public certificate file. Select the file then click the **Open** button as shown in the example below. If you're on macOS or Linux, this may look a little different but the process is generally the same.
 
