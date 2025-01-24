@@ -2,7 +2,9 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1cb13784-5016-476c-9036-57b4e78bca83/deploy-status)](https://app.netlify.com/sites/cert2arduino/deploys)
 
-A simple web application that allows visitors to convert a downloaded certificate file (a `.pem` or `.crt` file) into a header file you can use with an [Espressif](https://www.espressif.com/) device (ESP-32, for example) in the Arduino IDE with the Arduino `WiFiClientSecure` library to make secure connections (HTTPS) to remote servers. Without access to the certificate, an Arduino sketch cannot connect to the remote server over a secure connection.
+A simple web application that allows visitors to convert a downloaded certificate file (a `.pem` or `.crt` file) into a header file you can use with an [Espressif](https://www.espressif.com/) device (ESP-32, for example) in the Arduino IDE to make secure connections (HTTPS) to remote servers. Without access to the certificate, an Arduino sketch cannot connect to the remote server over a secure connection.
+
+Learn more: [Arduino ESP32 Connect to a Server Using HTTPS](https://johnwargo.com/posts/2025/arduino-esp32-connect-https/).
 
 ## Open Tasks
 
