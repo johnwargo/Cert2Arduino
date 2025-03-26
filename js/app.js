@@ -61,7 +61,7 @@ function setButtonState() {
 }
 
 function fileSelectionCancelled(event) {
-  if (DEBUG_MODE) console.log(`File selection cancelled`);
+  if (DEBUG_MODE) console.log(`File selection cancelled: ${event}`);
 }
 
 function fileSelected(event) {
